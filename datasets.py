@@ -13,7 +13,7 @@ class HandTestSet(data.Dataset):
         
     def __getitem__(self, index):
         imgs = [self.img_transform(Image.open(os.path.join(self.data_dir, '%d.png' % index)).convert('RGB') )]        
-        for i in xrange(7):
+        for i in range(7):
             imgs.append(self.img_transform(Image.open(os.path.join(self.data_dir, '%d_%d.png' %(index,i))).convert('RGB')))
         imgs = torch.cat(imgs,dim=0)
         

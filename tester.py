@@ -31,14 +31,14 @@ model.eval()
 
 for i, data in enumerate(testloader, 0):
     images = data
-    images = Variable(images.cuda())
+    images = Variable(images.cuda()).cpu()
     out1, out2 = model(images)    
     imgs = images[0].data        
 
     # Display 2D joints    
     u = np.zeros(21)   
     v = np.zeros(21)   
-    for ii in xrange(21): 
+    for ii in range(21): 
         u[ii] = out1[0,2*ii]
         v[ii] = out1[0,2*ii+1]                           
     plt.plot(u, v, 'ro', markersize=5)      
@@ -48,7 +48,7 @@ for i, data in enumerate(testloader, 0):
 
     # Save 3D mesh
     file1 = open('data/out/'+str(i)+'.obj','w')   
-    for j in xrange(778):
+    for j in range(778):
         file1.write("v %f %f %f\n"%(out2[0,21+j,0],-out2[0,21+j,1],-out2[0,21+j,2]))
     for j,x in enumerate(content):  
         a = x[:len(x)-1].split(" ")

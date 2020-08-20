@@ -15,7 +15,7 @@ pose_num = 6
 mesh_num = 778
 keypoints_num = 16
  
-dd = pickle.load(open('mano/models/MANO_RIGHT.pkl', 'rb'))
+dd = pickle.load(open('mano/models/MANO_RIGHT.pkl', 'rb'), encoding='latin1')
 kintree_table = dd['kintree_table']
 id_to_col = {kintree_table[1,i] : i for i in range(kintree_table.shape[1])} 
 parent = {i : id_to_col[kintree_table[0,i]] for i in range(1, kintree_table.shape[1])}  
